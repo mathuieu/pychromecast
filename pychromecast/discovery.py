@@ -1,7 +1,6 @@
 """Discovers Chromecasts on the network using mDNS/zeroconf."""
 from uuid import UUID
 
-import six
 from zeroconf import ServiceBrowser, Zeroconf
 
 DISCOVER_TIMEOUT = 5
@@ -48,7 +47,7 @@ class CastListener(object):
             """Retrieve value and decode for Python 2/3."""
             value = service.properties.get(key.encode('utf-8'))
 
-            if value is None or isinstance(value, six.text_type):
+            if value is None or isinstance(value, str):
                 return value
             return value.decode('utf-8')
 
